@@ -5,7 +5,7 @@
 Clone the project to your computer:
 
 ```bash
-git clone https://github.com/REPO_OWNER/REPO_NAME.git
+git clone https://github.com/Noah-nbinary/2kayaJavaExercises.git
 ```
 
 This downloads the repository to your machine.
