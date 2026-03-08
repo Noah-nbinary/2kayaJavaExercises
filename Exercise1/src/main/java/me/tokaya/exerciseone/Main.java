@@ -35,10 +35,66 @@ package me.tokaya.exerciseone;
  * - Make sure the program does not crash if the user inputs something unexpected
  */
 
+import java.util.Random;
+import java.util.Scanner;
+
 public class Main {
-    static void main() {
 
+    static Scanner scan = new Scanner(System.in);
 
+    static void main(String[] args) {
+
+        int victoryNumber = new Random().nextInt(0,101);
+        int attempts = 0;
+
+        gameInitialization();
+
+        while ( true ) {
+
+            int number = Integer.parseInt(scan.nextLine());
+            attempts += 1;
+
+            if (checkNumber(number, victoryNumber)){
+                System.out.println(
+                    "You won!! The winning number was " + victoryNumber +
+                    "\nIt took you " + attempts + " attempts"
+                );
+                break;
+            }
+
+        }
+
+    }
+
+    public static void gameInitialization() {
+
+        System.out.println("Welcome to the number guessing game!\n Please enter your name: ");
+        String name = scan.nextLine();
+
+        System.out.println(
+                "Welcome " + name +
+                "!\nPlease enter a number between 1 and 100 to start playing"
+        );
+    }
+
+    public static boolean checkNumber(int playerNumber, int gameNumber) {
+
+        if ( playerNumber < 1 || playerNumber > 100) {
+            System.out.println("The provided number wasn't between 1 and 100");
+            return false;
+        }
+
+        if ( playerNumber < gameNumber ) {
+            System.out.println("Your selected number is too low! Please try again");
+            return false;
+        }
+
+        if ( playerNumber > gameNumber ) {
+            System.out.println("Your selected number is too high! Please try again");
+            return false;
+        }
+
+        return true;
 
     }
 }
