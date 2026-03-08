@@ -51,8 +51,15 @@ public class Main {
 
         while ( true ) {
 
-            int number = Integer.parseInt(scan.nextLine());
-            attempts += 1;
+            int number;
+
+            try {
+                number = Integer.parseInt(scan.nextLine());
+                attempts += 1;
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid number. Provide one within range 1-100");
+                continue;
+            }
 
             if (checkNumber(number, victoryNumber)){
                 System.out.println(
