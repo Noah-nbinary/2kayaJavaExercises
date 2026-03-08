@@ -37,7 +37,7 @@ import java.util.Scanner;
  * - Make sure the program does not crash if the user inputs something unexpected
  */
 
-public class Principal {
+public class Main {
     public static void main (String[] args) {
     	
     	Scanner scan = new Scanner(System.in);
