@@ -44,7 +44,7 @@ public class Main {
 
     static void main(String[] args) {
 
-        int victoryNumber = new Random().nextInt(0,101);
+        final int victoryNumber = new Random().nextInt(0,101);
         int attempts = 0;
 
         gameInitialization();
@@ -69,7 +69,7 @@ public class Main {
     public static void gameInitialization() {
 
         System.out.println("Welcome to the number guessing game!\n Please enter your name: ");
-        String name = scan.nextLine();
+        final String name = scan.nextLine();
 
         System.out.println(
                 "Welcome " + name +
