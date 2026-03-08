@@ -40,10 +40,40 @@ package me.tokaya.exercisetwo;
  * - Try separating parts of the game into methods if you want extra practice
  */
 
+import java.util.Random;
+import java.util.Scanner;
+
 public class Main {
-    static void main() {
+    public static void main(String[] args) {
+        System.out.println("*** APUESTA CON DADOS ***");
+        Scanner consola = new Scanner(System.in);
+        Random random = new Random();
+        int monedas = 50;
 
+        do{
+            System.out.print("Tienes " + monedas + " monedas. Introduce la cantidad a apostar: ");
+            int apuesta = 0;
+            try {
+                apuesta = Integer.parseInt(consola.nextLine());
+            }catch(Exception e){}
+            if(monedas >= apuesta && apuesta > 0 ){
+                var dado = random.nextInt(1,6);
+                System.out.println("El dado muestra la cara con el número "+dado);
+                if(dado > 3){
+                    System.out.println("Felicidades has ganado " + apuesta + " monedas");
+                    monedas += apuesta;
+                }else{
+                    System.out.println("Has perdido "+apuesta+" monedas");
+                    monedas -= apuesta;
+                }
+            } else if(apuesta <= 0){
+                System.out.println("Valor no válido escoja un valor entre 1 y " + monedas);
+            } else {
+                System.out.println("No puedes apostar cantidades superiores a tu cantidad de monedas");
+            }
 
+        }while (monedas > 0);
 
+        System.out.println("Te has quedado sin monedas, GAME OVER");
     }
 }
