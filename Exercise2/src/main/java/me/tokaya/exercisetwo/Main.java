@@ -1,5 +1,7 @@
 package me.tokaya.exercisetwo;
 
+import java.util.Scanner;
+
 /*
  * DICE BETTING GAME (Java Exercise)
  * ---------------------------------
@@ -24,7 +26,7 @@ package me.tokaya.exercisetwo;
  *   - The bet cannot be negative
  *   - The bet cannot be greater than the coins the player currently has
  *
- * - After the bet is placed, roll a 6-sided die (1–6)
+ * - After the bet is placed, roll a 6-sided dice (1–6)
  * - If the dice result is:
  *   - 4, 5, or 6 → the player wins the bet and gains that amount of coins
  *   - 1, 2, or 3 → the player loses the bet and loses that amount of coins
@@ -41,9 +43,50 @@ package me.tokaya.exercisetwo;
  */
 
 public class Main {
-    static void main() {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
 
+        int monedas = 50;
 
+        System.out.println("¡Bienvenido a Farkle II! \nEsperemos que tu dado sea de la suerte");
 
+        do {
+            int apuesta = 0;
+            boolean apuestaValida = false;
+
+            // Validación de la apuesta (para que no sea un número negativo o que no sea una letra)
+            while (!apuestaValida) {
+                System.out.println("\nTienes " + monedas + " monedas");
+                System.out.print("¿Cuántas monedas deseas apostar? ");
+
+                if (scan.hasNextInt()) {
+                    apuesta = scan.nextInt();
+                    if (apuesta > 0 && apuesta <= monedas) {
+                        apuestaValida = true;
+                    } else {
+                        System.out.println("Esa cantidad no se puede. Inserta una apuesta entre 1 y " + monedas);
+                    }
+                } else {
+                    System.out.println("Solo se permiten números. Intenta de nuevo:");
+                    scan.next();
+                }
+            }
+
+            // Tirar el dado
+            int dado = (int) (Math.random() * 6) + 1;
+            System.out.println("El dado salió: " + dado);
+
+            // Resultado de la tirada
+            if (dado == 4 || dado == 5 || dado == 6) {
+                System.out.println("¡HAS GANADO! La apuesta de " + apuesta + " se suma a tus monedas");
+                monedas += apuesta * 2;
+            } else {
+                System.out.println("¡Qué lástima! Has perdido tu apuesta.");
+                monedas -= apuesta;
+            }
+
+        } while (monedas > 0);
+
+        System.out.println("\n¡Te has quedado pobre! Fin del juego");
     }
 }
